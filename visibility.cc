@@ -157,16 +157,16 @@ static void render(uint32_t *image, astro_time_t base_time) {
             double q_value = -INFINITY;
             char q_code = calculate<evening, yallop>(latitude, longitude, 0, base_time, nullptr, false, &draw_moon_line, &result_time, &q_value);
             uint32_t color = 0x00000000;
-            if      (q_code == 'A') color = 0xFF3EFF00; // These color codes are in 0xAAGGBBRR format
-            else if (q_code == 'B') color = 0xFF3EFF6D;
-            else if (q_code == 'C') color = 0xFF00FF9E;
-            else if (q_code == 'D') color = 0xFF00FFFA;
-            else if (q_code == 'E') color = 0xFF3C78FF;
-            else if (q_code == 'F') color = 0x00000000;
-            else if (q_code == 'G') color = 0xFFAD0D6A;
+            if      (q_code == 'A') color = 0xFF3EFF00; // Green 
+            else if (q_code == 'B') color = 0xFFcac96e; // Turquoise #6ec9ca
+            else if (q_code == 'C') color = 0xFF868686; // Gray #868686
+            else if (q_code == 'D') color = 0xFF3322df; // Red #df3322
+            else if (q_code == 'E') color = 0xFF3322df;
+            else if (q_code == 'F') color = 0x003322df;
+            else if (q_code == 'G') color = 0x00AD0D6A;
             else if (q_code == 'H') color = 0x00000000;
-            else if (q_code == 'I') color = 0xFF0000FF;
-            else if (q_code == 'J') color = 0xFF5707B5;
+            else if (q_code == 'I') color = 0x000000FF;
+            else if (q_code == 'J') color = 0x005707B5;
             if (draw_moon_line) color = 0xFFB0B0B0;
             image[i + j * width] = color;
 
