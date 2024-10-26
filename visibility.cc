@@ -111,11 +111,11 @@ static char calculate(
     double value;
     if (yallop) {
         value = (ARCV - (11.8371 - 6.3226 * W_topo + .7319 * pow(W_topo, 2) - .1018 * pow(W_topo, 3))) / 10;
-        if      (value > +.216) result = 'A'; // Crescent easily visible
+        if      (value > +.256) result = 'A'; // Crescent easily visible
         else if (value > -.014) result = 'B'; // Crescent visible under perfect conditions
-        else if (value > -.160) result = 'C'; // May need optical aid to find crescent
-        else if (value > -.232) result = 'D'; // Will need optical aid to find crescent
-        else if (value > -.293) result = 'E'; // Crescent not visible with telescope
+        else if (value > -.190) result = 'C'; // May need optical aid to find crescent
+        else if (value > -.450) result = 'D'; // Will need optical aid to find crescent
+        //else if (value > -.293) result = 'E'; // Crescent not visible with telescope
         else result = 'F';
     } else { // Odeh
         value = ARCV - (7.1651 - 6.3226 * W_topo + .7319 * pow(W_topo, 2) - .1018 * pow(W_topo, 3));
@@ -158,10 +158,10 @@ static void render(uint32_t *image, astro_time_t base_time) {
             char q_code = calculate<evening, yallop>(latitude, longitude, 0, base_time, nullptr, false, &draw_moon_line, &result_time, &q_value);
             uint32_t color = 0x00000000;
             if      (q_code == 'A') color = 0xFF3EFF00; // Green 
-            else if (q_code == 'B') color = 0xFFcac96e; // Turquoise #6ec9ca
+            else if (q_code == 'B') color = 0xFFeac96e; // Turquoise #6ec9ca
             else if (q_code == 'C') color = 0xFF868686; // Gray #868686
             else if (q_code == 'D') color = 0xFF3322df; // Red #df3322
-            else if (q_code == 'E') color = 0xFF3322df;
+            else if (q_code == 'E') color = 0x00000000;
             else if (q_code == 'F') color = 0x003322df;
             else if (q_code == 'G') color = 0x00AD0D6A;
             else if (q_code == 'H') color = 0x00000000;
@@ -192,7 +192,7 @@ static void render(uint32_t *image, astro_time_t base_time) {
         //     image[max_q_value_x + max_q_value_y * width] = 0xFF0000FF;
     }
 
-    #define DIAMOND_SIZE 7
+    #define DIAMOND_SIZE 0
     if (min_naked_eye_x != 0 && min_naked_eye_y != 0) {
         for (int i = -DIAMOND_SIZE; i <= DIAMOND_SIZE; ++i) {
             for (int j = -DIAMOND_SIZE; j <= DIAMOND_SIZE; ++j) {
